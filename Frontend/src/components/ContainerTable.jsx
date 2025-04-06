@@ -29,8 +29,7 @@ async function handleStart(id){
         if (!res.ok) {
             return {"error" : "Container not found or error: ${response.statusText"};
         }
-        setDialogTitle("Container Started");
-        setDialogOpen(true);
+
 
 
     }catch (err){
@@ -44,9 +43,10 @@ export function ContainerTable() {
     const [dialogTitle, setDialogTitle] = useState("");
     async function refreshContainers(){
         try{
-            const res=await fetch("http://localhost:5001/containers");
+            const res=await fetch("http://localhost:5001/containers/?all=true");
             const data = await res.json();
             setContainers(data);
+
         }
         catch (err){
             console.error("Error fetching containers:", err);
@@ -59,19 +59,16 @@ export function ContainerTable() {
             });
             if (!res.ok) {
                 //return {"error" : "Container not found or error: ${response.statusText"};
-                setDialogTitle("Container not found or error");
-                setDialogOpen(true);
-                await refreshContainers();
-                return;
+
             }
-            setDialogTitle("Container Started");
-            setDialogOpen(true);
+            await refreshContainers();
+            console.log(containers)
+
 
 
         }catch (err){
             console.error("Failed to start container:", err);
-            setDialogTitle("An error occurred while starting the container");
-            setDialogOpen(true);
+
         }
     }
     async function handleStop(id){
@@ -81,19 +78,17 @@ export function ContainerTable() {
             });
             if (!res.ok) {
                 //return {"error" : "Container not found or error: ${response.statusText"};
-                setDialogTitle("Container not found or error");
-                setDialogOpen(true);
-                await refreshContainers();
-                return;
+
+
+
             }
-            setDialogTitle("Container Stopped");
-            setDialogOpen(true);
+            await refreshContainers();
+            console.log(containers)
 
 
         }catch (err){
             console.error("Failed to start container:", err);
-            setDialogTitle("An error occurred while starting the container");
-            setDialogOpen(true);
+
         }
     }
 
@@ -128,7 +123,7 @@ export function ContainerTable() {
                 </TableHeader>
                 <TableBody>
                     {containers.map((container) => {
-                        return (<ContainerRow container={container} onStart={handleStart} onStop={handleStop}/>);
+                        return (<ContainerRow key={container.Id} container={container} onStart={handleStart} onStop={handleStop}/>);
                     })}
                 </TableBody>
             </Table>

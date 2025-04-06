@@ -9,7 +9,7 @@ export default function ContainerRow({container,onStart,onStop}){
     const name = container?.Names?.[0]?.replace("/", "") ?? "N/A";
     const ip = container?.NetworkSettings?.Networks?.bridge?.IPAddress ?? "N/A";
 
-    return (<TableRow key={container.Id}>
+    return (<TableRow >
         <TableCell>{container.Id.slice(0, 12)}</TableCell>
         <TableCell>{name}</TableCell>
         <TableCell>{container.Image}</TableCell>
