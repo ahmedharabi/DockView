@@ -9,14 +9,98 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import ContainerRow from "./ContainerRow.jsx";
+
+
+
+async function handleStart(id){
+    try{
+        const res=await fetch("http://localhost:5001/containers/"+id+"start",{
+            method:"POST"
+        });
+        if (!res.ok) {
+            return {"error" : "Container not found or error: ${response.statusText"};
+        }
+        setDialogTitle("Container Started");
+        setDialogOpen(true);
+
+
+    }catch (err){
+
+    }
+}
 
 export function ContainerTable() {
     const [containers, setContainers] = useState([]);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogTitle, setDialogTitle] = useState("");
+    async function refreshContainers(){
+        try{
+            const res=await fetch("http://localhost:5001/containers");
+            const data = await res.json();
+            setContainers(data);
+        }
+        catch (err){
+            console.error("Error fetching containers:", err);
+        }
+    }
+    async function handleStart(id){
+        try{
+            const res=await fetch("http://localhost:5001/containers/"+id+"/start",{
+                method:"POST"
+            });
+            if (!res.ok) {
+                //return {"error" : "Container not found or error: ${response.statusText"};
+                setDialogTitle("Container not found or error");
+                setDialogOpen(true);
+                await refreshContainers();
+                return;
+            }
+            setDialogTitle("Container Started");
+            setDialogOpen(true);
+
+
+        }catch (err){
+            console.error("Failed to start container:", err);
+            setDialogTitle("An error occurred while starting the container");
+            setDialogOpen(true);
+        }
+    }
+    async function handleStop(id){
+        try{
+            const res=await fetch("http://localhost:5001/containers/"+id+"/stop",{
+                method:"POST"
+            });
+            if (!res.ok) {
+                //return {"error" : "Container not found or error: ${response.statusText"};
+                setDialogTitle("Container not found or error");
+                setDialogOpen(true);
+                await refreshContainers();
+                return;
+            }
+            setDialogTitle("Container Stopped");
+            setDialogOpen(true);
+
+
+        }catch (err){
+            console.error("Failed to start container:", err);
+            setDialogTitle("An error occurred while starting the container");
+            setDialogOpen(true);
+        }
+    }
 
     useEffect(() => {
         async function fetchContainers() {
             try {
-                const res = await fetch("http://localhost:5001/containers");
+                const res = await fetch("http://localhost:5001/containers/?all=true");
                 const data = await res.json();
                 setContainers(data);
             } catch (err) {
@@ -44,36 +128,11 @@ export function ContainerTable() {
                 </TableHeader>
                 <TableBody>
                     {containers.map((container) => {
-                        const name = container?.Names?.[0]?.replace("/", "") ?? "N/A";
-                        const ip =
-                            container?.NetworkSettings?.Networks?.bridge?.IPAddress ?? "N/A";
-
-                        return (
-                            <TableRow key={container.Id}>
-                                <TableCell>{container.Id.slice(0, 12)}</TableCell>
-                                <TableCell>{name}</TableCell>
-                                <TableCell>{container.Image}</TableCell>
-                                <TableCell>
-                                    <Badge
-                                        variant={
-                                            container.State === "running" ? "default" : "destructive"
-                                        }
-                                    >
-                                        {container.Status}
-                                    </Badge>
-                                </TableCell>
-                                <TableCell>{ip}</TableCell>
-                                <TableCell>{container.Command}</TableCell>
-                                <TableCell>
-                                    <Button size="sm">
-                                        {container.State === "running" ? "Stop" : "Start"}
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                        );
+                        return (<ContainerRow container={container} onStart={handleStart} onStop={handleStop}/>);
                     })}
                 </TableBody>
             </Table>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={dialogTitle} />
         </div>
     );
 }
