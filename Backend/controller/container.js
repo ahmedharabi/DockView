@@ -109,8 +109,4 @@ exports.deleteContainer=async (req,res)=>{
 
 
 
-exports.getImages=async  (req,res)=>{
-    const images = await fetch("http://localhost:2375/images/json");
-    const data = await images.json();
-    res.json(data);
-}
+

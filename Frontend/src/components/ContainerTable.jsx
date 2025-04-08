@@ -39,7 +39,7 @@ async function handleStart(id){
 
 export function ContainerTable() {
     const [containers, setContainers] = useState([]);
-    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(true);
     const [dialogTitle, setDialogTitle] = useState("");
     async function refreshContainers(){
         try{
@@ -62,6 +62,7 @@ export function ContainerTable() {
 
             }
             await refreshContainers();
+            setDialogOpen(true)
             console.log(containers)
 
 
@@ -108,10 +109,11 @@ export function ContainerTable() {
 
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-semibold mb-4">Running Containers</h1>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={dialogTitle} />
+            <h1 className="text-2xl font-semibold mb-4 text-left">Running Containers</h1>
             <Table>
                 <TableHeader>
-                    <TableRow>
+                    <TableRow className="bg-gray-200">
                         <TableHead className="text-center">ID</TableHead>
                         <TableHead className="text-center">Name</TableHead>
                         <TableHead className="text-center">Image</TableHead>
@@ -127,7 +129,7 @@ export function ContainerTable() {
                     })}
                 </TableBody>
             </Table>
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={dialogTitle} />
+
         </div>
     );
 }
