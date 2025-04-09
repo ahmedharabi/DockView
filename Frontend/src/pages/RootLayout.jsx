@@ -1,16 +1,15 @@
 import {Link, Outlet} from "react-router-dom";
+import AppSideBar from "@/components/AppSidebar.jsx";
+import {Sidebar, SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar.jsx";
 
 export default function RootLayout() {
     return(
        <>
-           <h1>root layout</h1>
-           <ul>
-               <li><Link to={"/containers"}>Containers</Link></li>
-               <li><Link to={"/images"}>Images</Link></li>
-               <li><Link to={"/volumes"}>volumes</Link></li>
-               <li><Link to={"/networks"}>networks</Link></li>
-           </ul>
-           <Outlet/>
+            <SidebarProvider >
+                <AppSideBar/>
+                <SidebarTrigger/>
+                <Outlet/>
+            </SidebarProvider>
 
 
        </>

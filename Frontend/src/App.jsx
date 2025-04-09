@@ -5,6 +5,8 @@ import RootLayout from "@/pages/RootLayout.jsx";
 import Images from "@/pages/Images.jsx";
 import Volumes from "@/pages/Volumes.jsx";
 import Networks from "@/pages/Networks.jsx";
+import Monitoring from "@/pages/Monitoring.jsx";
+import AppSidebar from "@/components/AppSidebar.jsx";
 
 function App() {
 
@@ -16,7 +18,7 @@ function App() {
        {path:"/images", element:<Images/>},
        {path:"/volumes", element:<Volumes/>},
        {path:"/networks", element:<Networks/>},
-       {path:"/monitoring", element:<ContainerTable/>},
+       {path:"/monitoring", element:<Monitoring/>},
       ]
 
   }
