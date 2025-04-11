@@ -23,8 +23,9 @@ export default function Images() {
 
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-semibold mb-4 text-left">Docker Images</h1>
+        <div>
+            <h1 className="text-2xl font-semibold  text-left">Docker Images</h1>
+            <h3 className={"text-left mb-5"}>View and manage your local and Docker Hub images</h3>
             <Table>
                 <TableHeader>
                     <TableRow className="bg-gray-200">
@@ -38,7 +39,7 @@ export default function Images() {
                 </TableHeader>
                 <TableBody>
                     {images.map((image) => (
-                        <ImageRow key={image.Id} image={image} />
+                        <ImageRow key={image.Id} image={image}/>
                     ))}
                 </TableBody>
             </Table>

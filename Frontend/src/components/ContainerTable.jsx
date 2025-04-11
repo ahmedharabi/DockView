@@ -7,6 +7,7 @@ import {
     TableRow,
     TableCell,
 } from "@/components/ui/table";
+import{RefreshCcw }from"lucide-react"
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -108,11 +109,12 @@ export function ContainerTable() {
     }, []);
 
     return (
-        <div className="p-6">
+        <div >
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={dialogTitle} />
-            <h1 className="text-2xl font-semibold mb-4 text-left">Running Containers</h1>
-            <Table>
-                <TableHeader>
+            <h1 className="text-2xl font-semibold  text-left">Running Containers <button onClick={refreshContainers}> <RefreshCcw className={"text-blue-500"}/></button> </h1>
+            <h3 className={"text-left mb-5"}>View all your running containers and applications</h3>
+            <Table >
+                <TableHeader >
                     <TableRow className="bg-gray-200">
                         <TableHead className="text-center">ID</TableHead>
                         <TableHead className="text-center">Name</TableHead>
@@ -125,7 +127,7 @@ export function ContainerTable() {
                 </TableHeader>
                 <TableBody>
                     {containers.map((container) => {
-                        return (<ContainerRow key={container.Id} container={container} onStart={handleStart} onStop={handleStop}/>);
+                        return (<ContainerRow key={container.Id} container={container} onStart={handleStart} onStop={handleStop} />);
                     })}
                 </TableBody>
             </Table>

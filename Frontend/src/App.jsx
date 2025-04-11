@@ -6,13 +6,12 @@ import Images from "@/pages/Images.jsx";
 import Volumes from "@/pages/Volumes.jsx";
 import Networks from "@/pages/Networks.jsx";
 import Monitoring from "@/pages/Monitoring.jsx";
-import AppSidebar from "@/components/AppSidebar.jsx";
 
 function App() {
 
  const router=createBrowserRouter([
   {path:"/",
-      element:<RootLayout/>,
+      element:<RootLayout />,
       children:[
        {path:"/containers", element:<ContainerTable/>},
        {path:"/images", element:<Images/>},
@@ -23,7 +22,7 @@ function App() {
 
   }
  ])
-  return <RouterProvider router={router}/>;
+  return <RouterProvider router={router} />;
 
 }
 

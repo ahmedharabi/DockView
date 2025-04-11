@@ -33,7 +33,7 @@ export default function Networks(){
     return(
         <>
             <h1 className="text-2xl font-semibold mb-4 text-left">Docker Networks</h1>
-            <Table>
+            <Table >
                 <TableHeader>
                     <TableRow className="bg-gray-200">
                         <TableHead className="text-center">Name</TableHead>

@@ -32,7 +32,8 @@ export default function Volumes(){
 
     return(
         <>
-            <h1 className="text-2xl font-semibold mb-4 text-left">Docker Volumes</h1>
+            <h1 className="text-2xl font-semibold  text-left">Docker Volumes</h1>
+            <h3 className={"text-left mb-5"}>Manage your volumes, view usage, and inspect their contents</h3>
             <Table>
                 <TableHeader>
                     <TableRow className="bg-gray-200">

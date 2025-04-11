@@ -8,7 +8,7 @@ export default function ImageRow({ image }) {
     const created = timeAgo(image.Created * 1000);
 
     return (
-        <TableRow>
+        <TableRow className={"bg-white"}>
             <TableCell>{shortId}</TableCell>
             <TableCell>{repoTag[0]}</TableCell>
             <TableCell>{repoTag[1]}</TableCell>
