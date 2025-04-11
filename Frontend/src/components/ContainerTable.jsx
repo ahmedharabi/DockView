@@ -111,8 +111,8 @@ export function ContainerTable() {
     return (
         <div >
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={dialogTitle} />
-            <h1 className="text-2xl font-semibold  text-left">Running Containers <button onClick={refreshContainers}> <RefreshCcw className={"text-blue-500"}/></button> </h1>
-            <h3 className={"text-left mb-5"}>View all your running containers and applications</h3>
+            <h1 className="text-2xl font-semibold  text-left font-[Primeform_Pro_Demo]">Running Containers <button onClick={refreshContainers}> <RefreshCcw className={"text-blue-500"}/></button> </h1>
+            <h3 className={"text-left mb-5 font-[Primeform_Pro_Demo] "}>View all your running containers and applications</h3>
             <Table >
                 <TableHeader >
                     <TableRow className="bg-gray-200">

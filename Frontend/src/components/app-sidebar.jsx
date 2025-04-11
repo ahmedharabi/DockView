@@ -1,4 +1,4 @@
-import { Container,Package2 , Home, FileImage, EthernetPort , Settings } from "lucide-react"
+import { Container,Package2 , Home, FileImage, EthernetPort , Telescope  } from "lucide-react"
 
 import {
   Sidebar,
@@ -45,7 +45,7 @@ export default function AppSidebar() {
   return (
       <Sidebar>
         <SidebarContent className="bg-blue-700 text-white">
-          <SidebarHeader className={"text-bold text-xl text-center"}>DockerView</SidebarHeader>
+          <SidebarHeader className={"text-bold text-xl text-center inline font-[Primeform_Pro_Demo]  "}> <Telescope className={"text-blue-200 inline mr-2 mb-1 w-10 h-10 "}/>DockerView</SidebarHeader>
           <SidebarGroup >
 
             <SidebarGroupContent className="bg-blue-800 rounded-lg text-white p-1">
@@ -55,7 +55,7 @@ export default function AppSidebar() {
                       <SidebarMenuButton asChild >
                         <Link to={item.url}  >
                           <item.icon/>
-                          <span >{item.title}</span>
+                          <span className={"font-light font-[Primeform_Pro_Demo]"} >{item.title }</span>
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
