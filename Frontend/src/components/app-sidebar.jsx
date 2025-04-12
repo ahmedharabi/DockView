@@ -46,25 +46,27 @@ export default function AppSidebar() {
       <Sidebar>
         <SidebarContent className="bg-blue-700 text-white">
           <SidebarHeader className={"text-bold text-xl text-center inline font-[Primeform_Pro_Demo]  "}> <Telescope className={"text-blue-200 inline mr-2 mb-1 w-10 h-10 "}/>DockerView</SidebarHeader>
-          <SidebarGroup >
+          <SidebarGroup>
 
-            <SidebarGroupContent className="bg-blue-800 rounded-lg text-white p-1">
-              <SidebarMenu  >
-                {items.map((item) => (
-                    <SidebarMenuItem key={item.title}  >
-                      <SidebarMenuButton asChild >
-                        <Link to={item.url}  >
-                          <item.icon/>
-                          <span className={"font-light font-[Primeform_Pro_Demo]"} >{item.title }</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
+              <SidebarGroupContent className="bg-blue-800 rounded-lg text-white p-1">
+                <SidebarMenu>
+                  {items.map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton asChild>
+                          <Link to={item.url}>
+                            <item.icon/>
+                            <span className={"font-light font-[Primeform_Pro_Demo]"}>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+
+
           </SidebarGroup>
-          <SidebarFooter > hello  </SidebarFooter>
         </SidebarContent>
+        <SidebarFooter className={"align-bottom bg-blue-700 text-white font-light"} > DockView Beta 1.0 </SidebarFooter>
       </Sidebar>
-  )
+)
 }

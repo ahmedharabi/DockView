@@ -13,14 +13,4 @@ exports.getImages=async  (req,res)=>{
         res.status(500).json({message:"couldn't fetch images"});
     }
 
-
-
-
-
-
-
-
-    const data = await images.json();
-    console.log(data)
-    res.json(data);
 }

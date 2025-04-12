@@ -19,6 +19,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import ContainerRow from "./ContainerRow.jsx";
+import DialogBtn from "@/components/DialogBtn.jsx";
 
 
 
@@ -85,7 +86,7 @@ export function ContainerTable() {
 
             }
             await refreshContainers();
-            console.log(containers)
+
 
 
         }catch (err){
@@ -110,12 +111,19 @@ export function ContainerTable() {
 
     return (
         <div >
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={dialogTitle} />
-            <h1 className="text-2xl font-semibold  text-left font-[Primeform_Pro_Demo]">Running Containers <button onClick={refreshContainers}> <RefreshCcw className={"text-blue-500"}/></button> </h1>
-            <h3 className={"text-left mb-5 font-[Primeform_Pro_Demo] "}>View all your running containers and applications</h3>
-            <Table >
-                <TableHeader >
-                    <TableRow className="bg-gray-200">
+
+            <div className="flex justify-between items-center">
+                <h1 className="text-2xl font-semibold  text-left font-[Primeform_Pro_Demo]">Running Containers <button
+                    onClick={refreshContainers}><RefreshCcw className={"text-blue-500"}/></button></h1>
+                <DialogBtn/>
+            </div>
+
+            <h3 className={"text-left mb-5 font-[Primeform_Pro_Demo]  text-left"}>View all your running containers and
+                applications</h3>
+
+            <Table>
+                <TableHeader>
+                <TableRow className="bg-gray-200">
                         <TableHead className="text-center">ID</TableHead>
                         <TableHead className="text-center">Name</TableHead>
                         <TableHead className="text-center">Image</TableHead>

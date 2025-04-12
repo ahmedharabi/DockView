@@ -107,6 +107,29 @@ exports.deleteContainer=async (req,res)=>{
     }
 }
 
+exports.createContainer=async (req,res)=>{
+    const name=req.body.name;
+    const image=req.body.image;
+
+    try{
+        const response = await fetch("http://localhost:2375/containers/create?name=" + name, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Image: image
+            })
+        })
+        if (!response.ok) {
+            throw new Error("coulnd't create container")
+        }
+        const container=await response.json();
+        res.status(201).json({message:"container created with id: "+container.Id})
+    }catch (err){
+        res.status(500).json({message:"couldn't create container"})
+    }
+}
 
 
 
