@@ -13,9 +13,10 @@ import {useEffect, useState,useActionState} from "react";
 import ImageRow from "@/components/ImageRow.jsx";
 
 
-export default function DialogBtn(){
+export default function DialogBtn({onRefresh}){
     const [images,setImages]=useState([]);
     const [state, formAction,pending] = useActionState(startContainer, {});
+    const [open, setOpen] = useState(false);
     useEffect(() => {
         async function fetchImages() {
             try {
@@ -35,6 +36,7 @@ export default function DialogBtn(){
         const name = formData.get("name");
         const image = formData.get("image");
 
+
         await fetch("http://localhost:5001/containers/create",{
             method:"POST",
             headers: {
@@ -45,12 +47,13 @@ export default function DialogBtn(){
                 name:name
             })
         })
+        onRefresh();
 
     }
     return(
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" className={"bg-green-400 text-white hover:bg-green-300 hover:text-white"}>Add Container</Button>
+                <Button variant="outline" className={"bg-green-400 text-white hover:bg-green-300 hover:text-white"} >Add Container</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
@@ -77,7 +80,7 @@ export default function DialogBtn(){
                         </div>
                     </div>
                 <DialogFooter>
-                    <Button type="submit" >{pending ? "creating" : "create"}</Button>
+                    <Button type="submit" onClick={() => setOpen(false)}>{pending ? "creating" : "create"}</Button>
                 </DialogFooter>
             </form>
 
