@@ -135,7 +135,7 @@ export function ContainerTable() {
                 </TableHeader>
                 <TableBody>
                     {containers.map((container) => {
-                        return (<ContainerRow key={container.Id} container={container} onStart={handleStart} onStop={handleStop} />);
+                        return (<ContainerRow key={container.Id} container={container} onStart={handleStart} onStop={handleStop} fetchContainers={refreshContainers} />);
                     })}
                 </TableBody>
             </Table>

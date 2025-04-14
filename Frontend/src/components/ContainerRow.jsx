@@ -1,12 +1,12 @@
 import {TableCell, TableRow} from "@/components/ui/table.jsx";
 import {Badge} from "@/components/ui/badge.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import {Copy}from "lucide-react"
+import {Copy,Trash2 }from "lucide-react"
 import { toast } from "sonner"
 
 
 
-export default function ContainerRow({container,onStart,onStop}){
+export default function ContainerRow({container,onStart,onStop,fetchContainers}){
 
 
     const name = container?.Names?.[0]?.replace("/", "") ?? "N/A";
@@ -16,6 +16,25 @@ export default function ContainerRow({container,onStart,onStop}){
         await navigator.clipboard.writeText(id)
         toast(<span className="text-blue-600 font-semibold">Container ID copied!</span>)
     }
+    const handleDeleteContainer=async (id)=>{
+        try{
+            const response=await fetch("http://localhost:5001/containers/"+id,{
+                method:"DELETE"
+            })
+            if(!response.ok){
+                throw new Error("couldn't delete container")
+            }
+            const data=await response.json();
+            console.log({message:"container deleted successfully",id})
+            fetchContainers();
+
+        }
+        catch (err){
+            console.log.json({message:"couldn't delete the container"})
+        }
+    }
+
+
     return (
 
         <TableRow className={"font-[Primeform_Pro_Demo] font-light"} >
@@ -41,6 +60,7 @@ export default function ContainerRow({container,onStart,onStop}){
             }>
                 {container.State === "running" ? "Stop" : "Start"}
             </Button>
+            <button onClick={()=>{handleDeleteContainer(container.Id)}}><Trash2/> </button>
         </TableCell>
     </TableRow>)
 }

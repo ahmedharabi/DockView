@@ -33,21 +33,27 @@ export default function DialogBtn({onRefresh}){
         fetchImages();
     }, []);
     async function startContainer(prevState, formData) {
+
         const name = formData.get("name");
         const image = formData.get("image");
 
 
-        await fetch("http://localhost:5001/containers/create",{
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                image:image,
-                name:name
+
+
+            await fetch("http://localhost:5001/containers/create", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    image: image,
+                    name: name
+                })
             })
-        })
-        onRefresh();
+            onRefresh()
+            setOpen(false)
+
+
 
     }
     return(
@@ -80,7 +86,7 @@ export default function DialogBtn({onRefresh}){
                         </div>
                     </div>
                 <DialogFooter>
-                    <Button type="submit" onClick={() => setOpen(false)}>{pending ? "creating" : "create"}</Button>
+                    <Button disabled={pending} type="submit" >{pending ? "creating" : "create"}</Button>
                 </DialogFooter>
             </form>
 
