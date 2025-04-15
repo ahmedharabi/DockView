@@ -1,4 +1,4 @@
-import { Container,Package2 , Home, FileImage, EthernetPort , Telescope  } from "lucide-react"
+import { Container,Package2 , Home, FileImage, EthernetPort , Telescope ,ChartArea  } from "lucide-react"
 
 import {
   Sidebar,
@@ -15,9 +15,9 @@ import {Link} from "react-router-dom";
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "#",
-    icon: Home,
+    title: "Monitoring",
+    url: "/monitoring",
+    icon: ChartArea ,
   },
   {
     title: "Containers",

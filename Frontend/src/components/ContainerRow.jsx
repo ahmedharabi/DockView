@@ -60,7 +60,7 @@ export default function ContainerRow({container,onStart,onStop,fetchContainers})
             }>
                 {container.State === "running" ? "Stop" : "Start"}
             </Button>
-            <button onClick={()=>{handleDeleteContainer(container.Id)}}><Trash2/> </button>
+            <button onClick={()=>{handleDeleteContainer(container.Id)}} className={"align-middle"}><Trash2 /> </button>
         </TableCell>
     </TableRow>)
 }

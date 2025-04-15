@@ -113,9 +113,9 @@ export function ContainerTable() {
         <div >
 
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-semibold  text-left font-[Primeform_Pro_Demo]">Running Containers <button
-                    onClick={refreshContainers}><RefreshCcw className={"text-blue-500"}/></button></h1>
-                <DialogBtn onRefresh={refreshContainers}/>
+                <h1 className="text-2xl font-semibold  text-left font-[Primeform_Pro_Demo] align-middle">Running Containers <button
+                    onClick={refreshContainers}><RefreshCcw className={"text-blue-500 "}/></button></h1>
+                <DialogBtn onRefresh={refreshContainers}  />
             </div>
 
             <h3 className={"text-left mb-5 font-[Primeform_Pro_Demo]  text-left"}>View all your running containers and
